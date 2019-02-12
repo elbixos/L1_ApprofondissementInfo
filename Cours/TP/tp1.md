@@ -189,7 +189,7 @@ Basculons maintenant notre classe en véritable objet :
 Un element graphique doit savoir comment s'afficher dans une fenetre
 La fonction afficher doit donc devenir une méthode de la classe.
 
-Essayez vous même avant de regarder ce qui suit :
+Essayez vous même avant de regarder ce qui suit.
 Voici la classe :
 
 ```Python
@@ -208,7 +208,7 @@ class ElementGraphique():
         self.rect.x = x
         self.rect.y = y
 
-    def afficher(window) :
+    def afficher(self, window) :
         window.blit(self.image, self.rect)  
 ```
 
