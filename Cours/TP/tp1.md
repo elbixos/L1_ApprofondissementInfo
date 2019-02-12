@@ -74,7 +74,7 @@ Il faudra également modifier le programme quand on effectue l'affichage de ces
     fenetre.blit(balle.image, balle.rect)
 ```
 
-### Ajout d'un second constructeur d'**ElementGraphique**
+### Amélioration du constructeur d'**ElementGraphique**
 
 Vous avez sans doute noté que pour chaque élément graphique, le constructeur crée l'objet, avec des propriétés *image* et *rect*
 mal définies, que notre programme modifie ensuite pour leurs donner des valeurs correctes. (*parler de constructeur dans ce cas est en fait un abus de langage. Néanmoins, je m'en tiendrais à ce vocabulaire pour le moment*)
@@ -113,7 +113,7 @@ la partie du programme ou l'on crée les éléments graphiques devient :
     balle.rect.x = 270
 ```
 
-### Deuxième amélioration du constructeur d'**ElementGraphique**
+### Ajout d'un second constructeur d'**ElementGraphique**
 
 Nous allons maintenant ajouter un second constructeur, qui, si on l'utilise,
 permet de définir à la fois l'image de l'élément et son rect, mais aussi la position
