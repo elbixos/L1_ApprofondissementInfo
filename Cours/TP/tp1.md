@@ -74,12 +74,10 @@ Il faudra également modifier le programme quand on effectue l'affichage de ces
     fenetre.blit(balle.image, balle.rect)
 ```
 
-### Amélioration du constructeur d'**ElementGraphique**
+### Ajout d'un second constructeur d'**ElementGraphique**
 
-Vous avez sans doute noté que pour chaque élément graphique, le constructeur
-(*ceci est en fait un abus de langage. je m'en tiendrais à ce vocabulaire néanmoins*)
-crée l'objet, avec des propriétés *image* et *rect* mal définies,
-que notre programme modifie ensuite pour leurs donner des valeurs correctes.
+Vous avez sans doute noté que pour chaque élément graphique, le constructeur crée l'objet, avec des propriétés *image* et *rect*
+mal définies, que notre programme modifie ensuite pour leurs donner des valeurs correctes. (*parler de constructeur dans ce cas est en fait un abus de langage. Néanmoins, je m'en tiendrais à ce vocabulaire pour le moment*)
 
 Ceci n'est pas du tout dans la philosophie *Objet*. L'idée serait plutôt, quand
 on crée un objet, de lui donner son image et de programmer son constructeur pour
