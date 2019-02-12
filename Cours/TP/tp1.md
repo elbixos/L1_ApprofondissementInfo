@@ -36,7 +36,7 @@ lui donne une image nulle et un rectangle nul.
 Idéalement, ne regardez pas le code suivant et essayez par vous même.
 Si cela coince, regardez le code suivant :
 
-```Python
+```python
 class ElementGraphique():
     def __init__(self):
         self.image = 0
@@ -47,7 +47,7 @@ class ElementGraphique():
 Modifiez le code de façon a utiliser cette classe pour le joueur,
 la balle et le fond :
 votre programme va donc créer 3 éléments graphiques :
-```Python
+```python
     perso = ElementGraphique()
     perso.image = pygame.image.load("perso.png").convert_alpha()
     perso.rect = perso.image.get_rect()
@@ -68,7 +68,7 @@ votre programme va donc créer 3 éléments graphiques :
 Il faudra également modifier le programme quand on effectue l'affichage de ces
 éléments pour avoir
 
-```Python
+```python
     fenetre.blit(fond.image, fond.rect)
     fenetre.blit(perso.image, perso.rect)
     fenetre.blit(balle.image, balle.rect)
@@ -91,7 +91,7 @@ approprié.
 
 Vous pouvez essayer tout seul, mais pouvez aussi regarder ce qui suit :
 
-```Python
+```python
 class ElementGraphique():
     def __init__(self, img):
         self.image = img
@@ -100,7 +100,7 @@ class ElementGraphique():
 
 la partie du programme ou l'on crée les éléments graphiques devient :
 
-```Python
+```python
     image = pygame.image.load("perso.png").convert_alpha()
     perso = ElementGraphique(image)
     perso.rect.x = 240
@@ -123,7 +123,7 @@ voulue de l'élément.
 
 Encore une fois, vous pouvez essayer tout seul. Voici le résultat voulu pour la classe.
 
-```Python
+```python
 class ElementGraphique():
     # Le constructeur basique
     def __init__(self, img):
@@ -140,7 +140,7 @@ class ElementGraphique():
         self.rect.y = y         
 ```
 Cette classe s'utilise maintenant comme suit :
-```Python
+```python
     image = pygame.image.load("perso.png").convert_alpha()
     perso = ElementGraphique(image,240, 300)
 
@@ -161,7 +161,7 @@ Nous pouvons donc créer une fonction d'affichage de tout élément graphique da
 donnée
 
 Une telle fonction s'écrirait comme suit :
-```Python
+```python
 def afficher(elGraphique, window) :
     window.blit(elGraphique.image, elGraphique.rect)  
 ```
@@ -169,7 +169,7 @@ Et le programme principal utiliserait cette fonction à la place des *fenetre.bl
 
 Le code d'avant :
 
-```Python
+```python
     fenetre.blit(fond.image, fond.rect)
     fenetre.blit(perso.image, perso.rect)
     fenetre.blit(balle.image, balle.rect)
@@ -177,7 +177,7 @@ Le code d'avant :
 
 Le code d'après :
 
-```Python
+```python
     afficher(fond,fenetre)
     afficher(perso,fenetre)
     afficher(balle,fenetre)
@@ -192,7 +192,7 @@ La fonction afficher doit donc devenir une méthode de la classe.
 Essayez vous même avant de regarder ce qui suit.
 Voici la classe :
 
-```Python
+```python
 class ElementGraphique():
     # Le constructeur basique
     def __init__(self, img):
@@ -214,7 +214,7 @@ class ElementGraphique():
 
 et la partie du programme principal qui affiche les éléments.
 
-```Python
+```python
     fond.afficher((fenetre)
     perso.afficher((fenetre)
     balle.afficher((fenetre)
