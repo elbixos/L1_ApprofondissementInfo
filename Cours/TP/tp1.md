@@ -38,7 +38,7 @@ Si cela coince, regardez le code suivant :
 
 ```Python
 class ElementGraphique():
-    __init__(self):
+    def __init__(self):
         self.image = 0
         self.rect = 0
 ```
@@ -93,7 +93,7 @@ Vous pouvez essayer tout seul, mais pouvez aussi regarder ce qui suit :
 
 ```Python
 class ElementGraphique():
-    __init__(self, img):
+    def __init__(self, img):
         self.image = img
         self.rect = self.image.get_rect()
 ```
@@ -126,12 +126,12 @@ Encore une fois, vous pouvez essayer tout seul. Voici le résultat voulu pour la
 ```Python
 class ElementGraphique():
     # Le constructeur basique
-    __init__(self, img):
+    def __init__(self, img):
         self.image = img
         self.rect = self.image.get_rect()
 
     # Constructeur qui positionne
-    __init__(self, img, x , y):
+    def __init__(self, img, x , y):
         # tout d'abord on appelle le constructeur précédent.
         ElementGraphique.__init__(self,img)
 
@@ -195,12 +195,12 @@ Voici la classe :
 ```Python
 class ElementGraphique():
     # Le constructeur basique
-    __init__(self, img):
+    def __init__(self, img):
         self.image = img
         self.rect = self.image.get_rect()
 
     # Constructeur qui positionne
-    __init__(self, img, x , y):
+    def __init__(self, img, x , y):
         # tout d'abord on appelle le constructeur précédent.
         ElementGraphique.__init__(self,img)
 
