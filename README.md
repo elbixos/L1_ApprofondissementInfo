@@ -27,3 +27,7 @@ Si vous êtes dans cette UE, je suppose que vous savez :
 Si c'est le cas, vous pouvez suivre [ce lien](Cours/README.md).
 Si ce n'est pas le cas, envisagez de vous inscrire plutôt dans l'UE
 **Renforcement Informatique** ou prévoyez de travailler pour corriger vos lacunes.
+
+## Les énoncés des TP
+
+Ils sont disponibles en suivant [ce lien](TP/README.md).
