@@ -30,4 +30,4 @@ Si ce n'est pas le cas, envisagez de vous inscrire plutôt dans l'UE
 
 ## Les énoncés des TP
 
-Ils sont disponibles en suivant [ce lien](TP/README.md).
+Ils sont disponibles en suivant [ce lien](Cours/TP/README.md).
