@@ -27,7 +27,7 @@ Chaque élément graphique dispose toujours de 2 informations :
 - une image qui le représente
 - un rectangle qui définit sa position.
 
-Ce seront les **propriétés** (les champs) de notre classe.
+Ce seront les **attributs** (les champs) de notre classe.
 Quand nous voudrons accéder au champ image d'un élément graphique *el*, nous
 utiliserons désormais *el.image* ou *el.rect*.
 
@@ -76,7 +76,7 @@ Il faudra également modifier le programme quand on effectue l'affichage de ces
 
 ### Amélioration du constructeur d'**ElementGraphique**
 
-Vous avez sans doute noté que pour chaque élément graphique, le constructeur crée l'objet, avec des propriétés *image* et *rect*
+Vous avez sans doute noté que pour chaque élément graphique, le constructeur crée l'objet, avec des attributs *image* et *rect*
 mal définies, que notre programme modifie ensuite pour leurs donner des valeurs correctes. (*parler de constructeur dans ce cas est en fait un abus de langage. Néanmoins, je m'en tiendrais à ce vocabulaire pour le moment*)
 
 Ceci n'est pas du tout dans la philosophie *Objet*. L'idée serait plutôt, quand
@@ -113,25 +113,26 @@ la partie du programme ou l'on crée les éléments graphiques devient :
     balle.rect.x = 270
 ```
 
-### Ajout d'un second constructeur d'**ElementGraphique**
+### Modification du constructeur d'**ElementGraphique**
 
-Nous allons maintenant ajouter un second constructeur, qui, si on l'utilise,
-permet de définir à la fois l'image de l'élément et son rect, mais aussi la position
+Nous allons maintenant modifier notre constructeur, de façon à pouvoir,
+définir à la fois l'image de l'élément et son rect, mais aussi la position
 voulue de l'élément.
+*En python, il n'est pas possible de créer deux constructeurs différents.
+Nous allons utiliser des parametres optionnels*
+
+les parametres $x$ et $y$ peuvent ou pas être passés a la fonction. Si lors de
+l'appel de la fonction, on ne les utilise pas, nous leur feront prendre la
+valeur par défaut $0$.
 
 Encore une fois, vous pouvez essayer tout seul. Voici le résultat voulu pour la classe.
 
 ```python
 class ElementGraphique():
     # Le constructeur basique
-    def __init__(self, img):
+    def __init__(self, img, x=0, y=0):
         self.image = img
         self.rect = self.image.get_rect()
-
-    # Constructeur qui positionne
-    def __init__(self, img, x , y):
-        # tout d'abord on appelle le constructeur précédent.
-        ElementGraphique.__init__(self,img)
 
         # puis on positionne l'element.
         self.rect.x = x
@@ -143,7 +144,7 @@ Cette classe s'utilise maintenant comme suit :
     perso = ElementGraphique(image,240, 300)
 
     image = pygame.image.load("background.jpg").convert_alpha()
-    fond = ElementGraphique(image,0,0)
+    fond = ElementGraphique(image)
 
     image = pygame.image.load("balle.png").convert_alpha()
     balle = ElementGraphique(image,140,70)
@@ -226,8 +227,8 @@ Le bilan :
 Vous pouvez maintenant faire quelques manipulations qui serviront de
 base pour le prochain TP.
 
-- créer la fonction qui déplace le perso. Passez lui tous les arguments dont elle a besoin. (*perso étant un objet, la fonction peut modifier la valeur de ses propriétés* )
+- créer la fonction qui déplace le perso. Passez lui tous les arguments dont elle a besoin. (*perso étant un objet, la fonction peut modifier la valeur de ses attributs* )
 
-- créer la fonction qui déplace la balle. Passez lui tous les arguments dont elle a besoin. (*balle étant un objet, la fonction peut modifier la valeur de ses propriétés* )
+- créer la fonction qui déplace la balle. Passez lui tous les arguments dont elle a besoin. (*balle étant un objet, la fonction peut modifier la valeur de ses attributs* )
 
 - Modifiez votre programme pour que l'on ait 3 balles, réunies dans un tableau, qui se déplacent à l'écran.
