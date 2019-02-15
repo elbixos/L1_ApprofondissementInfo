@@ -4,6 +4,9 @@
 
 - [Cours 1](01_cours1.md) : Les Fonctions
 
+- [Cours 2](02_cours2.md) : Les Classes
+
+
 ## Cours Complet
 
 Il existe aussi une version complète du cours qui réunit tous les cours
