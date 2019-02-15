@@ -108,7 +108,6 @@ class Etudiant():
 ```
 le fichier *02_03_main.py* contiendra le code du programme principal.
 
+#### Modification de l'objet
 
-
-
-Améliorons notre exemple un petit peu pour mieux comprendre.
+Nous allons maintenant ajouter quelques méthodes à notre objet.
