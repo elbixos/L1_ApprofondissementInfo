@@ -31,7 +31,7 @@ et accède à l'attribut nom en utilisant *etu.nom*
 
 Encore faut il expliquer à python ce qu'est cet Etudiant.
 C'est un nouveau type de variables. Dans le cas présent, c'est ce que le C
-appellerait une **structure du données**, et que les langages
+appellerait une **structure de donnée**, et que les langages
 objets appellent une **classe**.
 
 Pour la créer et l'utiliser, on aurait le programme complet suivant (les explications
