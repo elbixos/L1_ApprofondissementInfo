@@ -207,7 +207,3 @@ for e in promo :
 ```
 
 C'est beau, c'est propre.
-
-
-
-Passons maintenant a ce qui va permettre de
