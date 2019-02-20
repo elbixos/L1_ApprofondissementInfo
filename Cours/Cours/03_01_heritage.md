@@ -5,11 +5,7 @@ Tout ceci n'est pas bien compliqué, c'est la mise en oeuvre intelligente de tou
 ceci dans des cas réels de programmation qui demande reflexion. Pour vous
 expliquer les concepts, je vais prendre des exemples simples.
 
-Cet exemple est complètement pompé sur un cours qui parle de php et disponible à
-l'adresse suivante :  
-[https://openclassrooms.com/fr/courses/1665806-programmez-en-oriente-objet-en-php](https://openclassrooms.com/fr/courses/1665806-programmez-en-oriente-objet-en-php)
-
-Il s'agit donc de créer un micro jeu d'aventures, de type jeu de rôles, mettant
+Il s'agit ici de créer un micro jeu d'aventures, de type jeu de rôles, mettant
 en jeu des magiciens, des barbares...
 
 Nous avons donc des personnages qui ont des points de vie, qui peuvent attaquer
@@ -38,27 +34,56 @@ class Personnage():
 ```
 
 Nous allons aussi avoir un programme principal qui utilise cette classe :
+1. le programme crée un tableau de personnages.
+2. Tant qu'il reste plus d'un personnage en piste :
+  1. on affiche les joueurs en lice.
+  2. on en tire 2 au sort.
+  3. le premier attaque le second.
+  4. on vire les morts.
+3. on affiche le vainqueur
 
 ```python
-from Personnage import Personnage
+import random
 
-magicMike = Personnage("Mike the Great")
+def nettoyer(listePerso):
+    newList = []
+    for p in listePerso:
+        if p.hp >0:
+            newList.append(p)
 
-bigBill = Personnage("Bill theBarbarian")
+    return(newList)
 
-magicMike.afficher()
-bigBill.afficher()
+def afficher(listePerso, turn):
+    print ("======Tour ",turn, "===========")
+    for p in listePerso:
+        p.afficher()
+    print()
 
-magicMike.attaquer(bigBill)
+assemblee = []
 
-magicMike.afficher()
-bigBill.afficher()
+p = Personnage("Popaul the farmer")
+assemblee.append(p)
+p = Personnage("Mandrix the Great")
+assemblee.append(p)
+p = Personnage("Cohen the Barbarian")
+assemblee.append(p)
 
-bigBill.attaquer(magicMike)
-bigBill.attaquer(magicMike)
+turn = 0
 
-magicMike.afficher()
-bigBill.afficher()
+
+while (len(assemblee) > 1):
+    turn +=1
+    afficher(assemblee, turn)
+    # Selection de 2 joueurs au hasard.
+    twoGuys = random.sample(assemblee,2)
+
+    # Le premier attaque le second.
+    twoGuys[0].attaquer(twoGuys[1])
+    assemblee = nettoyer(assemblee)
+
+print()
+print ("================")
+print ("Vainqueur : ", assemblee[0].nom)
 ```
 
 ### Le Barbare
@@ -73,33 +98,25 @@ La classe Barbare va hériter de la classe Personnage : un objet de type Barbare
 aura automatiquement les mêmes attributs et méthodes que la classe Personnage.
 Gardez ceci en tête, on peut vouloir que Barbare hérite de Personnage car un Barbare est un Personnage. (le contraire serait stupide)
 
+Créons donc un fichier *Barbare.py* contenant les lignes suivantes :
+
 ```python
 class Barbare(Personnage):
   pass
 ```
-Notre programme principal a été a peine modifié.
+
+Notre programme principal a été a peine modifié :
+Nous avons ajouté cette ligne en haut
 ```python
-from Personnage import Personnage
 from Barbare import Barbare
-
-magicMike = Personnage("Mike the Great")
-
-bigBill = Barbare("Bill theBarbarian")
-
-magicMike.afficher()
-bigBill.afficher()
-
-magicMike.attaquer(bigBill)
-
-magicMike.afficher()
-bigBill.afficher()
-
-bigBill.attaquer(magicMike)
-bigBill.attaquer(magicMike)
-
-magicMike.afficher()
-bigBill.afficher()
 ```
+
+Nous avons modifié la création du personnage de *Cohen*.
+```python
+p = Personnage("Cohen the Barbarian")
+```
+
+
 Que s'est il passé ? Quand je demande la création d'un Barbare, comme la classe Barbare ne propose pas de constructeur, Python appelle automatiquement la méthode *__init__* de la classe parente
 
 Bon, mais si l'on veut améliorer un peu notre barbare, nous allons lui créer son propre constructeur.
@@ -116,7 +133,7 @@ class Barbare(Personnage):
         self.hp = 5
         self.attaque = 4
 ```
-Executez votre programme principal, et notez que Mike est mort prématurément maintenant.
+Executez votre programme principal, et notez que le barbare est plus costaud qu'avant.
 
 Explications :
 - Quand on crée un Barbare, python cherche une méthode *__init__*.
@@ -150,7 +167,7 @@ class Magicien(Personnage):
 
     def bouleDeFeu(self, perso):
         if self.mana >= 5 :
-            print ("Subit le courroux de", self.nom, ", boule de feu dans ta face",
+            print ("boule de feu dans ta face ",
             perso.nom)
             perso.recevoirDegats(self.attaqueBdF)
             self.mana -= 4
@@ -164,18 +181,11 @@ from Barbare import Barbare
 from Magicien import Magicien
 
 magicMike = Magicien("Mike the Great")
-
-bigBill = Barbare("Bill theBarbarian")
-
-magicMike.afficher()
-bigBill.afficher()
+bill = Personnage("Bill the not so great")
 
 magicMike.bouleDeFeu(bigBill)
-
-magicMike.afficher()
-bigBill.afficher()
 ```
-mais c'est dommage d'avoir du modifier le programme principal pour béneficier de la boule de feu.
+mais c'est délicat de modifier le programme principal précédent pour bénéficier de la boule de feu.
 Nous allons donc **redéfinir** la méthode *attaquer* de la classe *Personnage*
 dans la classe *Magicien*.
 
@@ -207,30 +217,54 @@ class Magicien(Personnage):
 
 ```
 Du coup, notre programme principal n'a plus besoin que d'utiliser la fonction
-*attaquer*. C'est le Personnage (ici, le magicien) qui choisit une méthode adaptée.
+*attaquer*. C'est le Personnage (ici, le magicien) qui choisit une méthode adaptée. Nous conservons donc le programme initial à ceci prêt que *Mandrix The Great* est maintenant officiellement un magicien.
+
+
 ```python
-from Personnage import Personnage
-from Barbare import Barbare
-from Magicien import Magicien
+```python
+import random
 
-magicMike = Magicien("Mike the Great")
+def nettoyer(listePerso):
+    newList = []
+    for p in listePerso:
+        if p.hp >0:
+            newList.append(p)
 
-bigBill = Barbare("Bill the Barbarian")
+    return(newList)
 
-magicMike.afficher()
-bigBill.afficher()
+def afficher(listePerso, turn):
+    print ("======Tour ",turn, "===========")
+    for p in listePerso:
+        p.afficher()
+    print()
 
-magicMike.attaquer(bigBill)
+assemblee = []
 
-magicMike.afficher()
-bigBill.afficher()
+p = Personnage("Popaul the farmer")
+assemblee.append(p)
+p = Personnage("Mandrix the Great")
+assemblee.append(p)
+p = Personnage("Cohen the Barbarian")
+assemblee.append(p)
 
-bigBill.attaquer(magicMike)
-bigBill.attaquer(magicMike)
+turn = 0
 
-magicMike.afficher()
-bigBill.afficher()
+
+while (len(assemblee) > 1):
+    turn +=1
+    afficher(assemblee, turn)
+    # Selection de 2 joueurs au hasard.
+    twoGuys = random.sample(assemblee,2)
+
+    # Le premier attaque le second.
+    twoGuys[0].attaquer(twoGuys[1])
+    assemblee = nettoyer(assemblee)
+
+print()
+print ("================")
+print ("Vainqueur : ", assemblee[0].nom)
 ```
+
 
 Cette notion de **redéfinition** est primordiale en POO. Que fait python à l'appel de la fonction attaquer ? Il cherche dans la classe la plus en bas de l'arbre d'héritage (le plus près de l'objet) si elle propose une méthode *attaquer*. Si oui, il l'applique. Sinon, il regarde si son parent le plus proche en propose une. Si oui, il l'applique. Et ainsi de suite.
 
