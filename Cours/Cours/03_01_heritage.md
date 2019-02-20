@@ -17,7 +17,7 @@ et prendre des dégâts. Comme nous avons bien compris l'intérêt de la POO pou
 
 ### La classe Personnage
 
-```python
+```
 class Personnage():
     def __init__(self, nom):
         self.nom = nom
