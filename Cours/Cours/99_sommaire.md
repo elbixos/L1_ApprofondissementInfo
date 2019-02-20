@@ -6,6 +6,8 @@
 
 - [Cours 2](02_cours2.md) : Les Classes
 
+- [Cours 3](03_cours3.md) : Les Classes : héritage
+
 
 ## Cours Complet
 
