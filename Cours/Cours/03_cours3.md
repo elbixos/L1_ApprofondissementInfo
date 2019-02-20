@@ -16,7 +16,8 @@ Nous avons donc des personnages qui ont des points de vie, qui peuvent attaquer
 et prendre des dégâts. Comme nous avons bien compris l'intérêt de la POO pour ce genre de cas, nous allons créer une classe Personnage.
 
 ### La classe Personnage
-'''python
+
+```python
 class Personnage():
     def __init__(self, nom):
         self.nom = nom
@@ -34,7 +35,8 @@ class Personnage():
 
     def afficher(self):
         print ("je suis ", self.nom, "il me reste ", self.hp, "points de vie")
-'''
+```
+
 Nous allons aussi avoir un programme principal qui utilise cette classe :
 
 ```python
