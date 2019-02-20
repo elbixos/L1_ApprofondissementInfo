@@ -503,10 +503,12 @@ class Personnage():
         self.nom = nom
         self.attaque = 2
         self.hp = 3
+        self.alive = True
 
     def recevoirDegats(self, degats):
         self.hp -= degats
         if self.hp <=0 :
+            self.alive = False
             print ("Arghhh, c'est la fin pour moi. Souvenez vous de", self.nom)
 
     def attaquer(self, perso):
@@ -515,6 +517,9 @@ class Personnage():
 
     def afficher(self):
         print ("je suis ", self.nom, "il me reste ", self.hp, "points de vie")
+
+    def isAlive(self):
+        return self.alive
 ```
 
 Nous allons aussi avoir un programme principal qui utilise cette classe :
@@ -532,7 +537,7 @@ import random
 def nettoyer(listePerso):
     newList = []
     for p in listePerso:
-        if p.hp >0:
+        if p.isAlive():
             newList.append(p)
 
     return(newList)
@@ -580,7 +585,10 @@ ce dont nous avons besoin.
 
 La classe Barbare va hériter de la classe Personnage : un objet de type Barbare
 aura automatiquement les mêmes attributs et méthodes que la classe Personnage.
-Gardez ceci en tête, on peut vouloir que Barbare hérite de Personnage car un Barbare est un Personnage. (le contraire serait stupide)
+Gardez ceci en tête : on peut vouloir que Barbare hérite de Personnage car un
+Barbare est un Personnage. En revanche, un Personnage n'est pas un Barbare.
+
+La classe dérivée est une version spécialisée de la classe **Parente**.
 
 Créons donc un fichier *Barbare.py* contenant les lignes suivantes :
 
@@ -759,6 +767,20 @@ d'adapter nos fonctions à nos objets de façon très précise.
 
 Le programmeur qui utilise nos classes n'a souvent aucune idée de la façon dont
 les choses sont implémentées. Il n'a besoin que de documentation sur l'utilisation des objets.
+
+### Les héritages multiples
+
+En voulant aller plus loin, nous pourrions avoir envie d'avoir différentes races
+(Humains, Orcs, Trolls, ...). On pourrait alors créer une classe Orc,
+et une classe MagicienOrc qui est à la fois un Magicien et un Orc.
+
+On parle alors d'héritage multiple. Mon conseil sera simple :
+pour le moment évitez ça.
+- beaucoup de langages ne tolèrent pas l'héritage multiple
+- Si vous en avez besoin, c'est souvent car votre design est mal conçu.
+- Cela va peut être poser des problèmes que vous ne maitrisez pas encore.
+
+Ca viendra.
 
 
 ### les fichiers
