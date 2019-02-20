@@ -106,8 +106,114 @@ class Etudiant():
   def afficher(self):
       print (self.nom, self.prenom, self.notes)
 ```
-le fichier *02_03_main.py* contiendra le code du programme principal.
+le fichier *02_04_main.py* contiendra le code du programme principal.
 
-#### Modification de l'objet
+```python
+from etudiant import Etudiant
 
-Nous allons maintenant ajouter quelques méthodes à notre objet.
+promo = []
+
+etu = Etudiant("Uzumaki","Naruto")
+promo.append(etu)
+
+etu = Etudiant("Uchiwa","Sazuke")
+promo.append(etu)
+
+
+for e in promo :
+  e.afficher()
+```
+La première ligne dit : "dans le fichier *etudiant.py* (considéré comme un *module*), importe la classe Etudiant".
+
+#### Modification de l'objet *Etudiant*
+
+Nous allons maintenant jouer un peu avec notre objet pour lui ajouter des
+fonctionnalités et des attributs. Il sera de votre ressort d'essayer par vous
+même. La solution figure en dessous.
+
+1. Ajout d'un attribut *nomComplet*, construit par le constructeur,
+sur le modèle suivant : si l'étudiant s'appelle Vincenzo Delapaegas, son nom
+complet serait "Mister Vincenzo The Great Delapaegas"
+
+2. Création d'une méthode qui ajoute une note à l'étudiant.
+
+3. Création d'une méthode qui calcule la moyenne de l'étudiant.
+
+4. Création d'une méthode qui permet à un étudiant de se comparer à un autre
+(nom de la méthode : *isBetter*, renvoie True si l'étudiant est meilleur que l'etudiant passé en paramètre à la fonction).
+
+Evidemment, pour toutes ces méthodes, il faudra que le programme principal les teste.
+
+
+```python
+
+class Etudiant():
+    def __init__(self, nom, prenom, notes = []):
+        self.nom = nom
+        self.prenom= prenom
+        self.nomComplet = "Mister or Miss "+nom+" The Great "+prenom
+        self.notes = notes
+
+    def afficher(self):
+        print (self.nom,self.prenom, self.notes)
+
+    def ajouterNote(self, note):
+        self.notes.append(note)
+
+
+    def getMoyenne(self):
+        moy = 0.0
+        for n in self.notes :
+            moy+= n
+        if not len(self.notes) == 0:
+            moy = moy / len(self.notes)
+
+        return moy
+
+    def isBetter(self,etudiant):
+        if (self.getMoyenne() > etudiant.getMoyenne()):
+            return True
+        return False
+
+```
+
+```python
+from etudiant import Etudiant
+
+def afficherPromo(promo):
+    for etu in promo :
+        etu.afficher()
+
+a = 5
+b = a
+print (a,b)
+a = a+1
+print (a,b)
+
+
+promo = []
+
+e1 = Etudiant("Georges", "Anthony",[15,19])
+
+e1.afficher()
+
+promo.append(e1)
+
+e2 = Etudiant("Valerius","Landry")
+e2.ajouterNote(12)
+e2.ajouterNote(16)
+e2.ajouterNote(14)
+promo.append(e2)
+
+afficherPromo(promo)
+
+moy = e1.getMoyenne()
+print(moy)
+
+print(e2.getMoyenne())
+
+if e1.isBetter(e2):
+    print ("bravo ", e1.nomComplet)
+else:
+    print ("bravo ", e2.nomComplet)
+```
