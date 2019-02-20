@@ -5,10 +5,12 @@ class Personnage():
         self.nom = nom
         self.attaque = 2
         self.hp = 3
+        self.alive = True
 
     def recevoirDegats(self, degats):
         self.hp -= degats
         if self.hp <=0 :
+            self.alive = False
             print ("Arghhh, c'est la fin pour moi. Souvenez vous de", self.nom)
 
     def attaquer(self, perso):
@@ -17,3 +19,6 @@ class Personnage():
 
     def afficher(self):
         print ("je suis ", self.nom, "il me reste ", self.hp, "points de vie")
+
+    def isAlive(self):
+        return self.alive

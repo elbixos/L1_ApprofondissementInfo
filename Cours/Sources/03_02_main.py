@@ -6,7 +6,7 @@ import random
 def nettoyer(listePerso):
     newList = []
     for p in listePerso:
-        if p.hp >0:
+        if p.isAlive():
             newList.append(p)
 
     return(newList)
