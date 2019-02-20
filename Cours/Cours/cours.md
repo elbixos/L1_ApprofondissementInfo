@@ -78,7 +78,7 @@ et accède à l'attribut nom en utilisant *etu.nom*
 
 Encore faut il expliquer à python ce qu'est cet Etudiant.
 C'est un nouveau type de variables. Dans le cas présent, c'est ce que le C
-appellerait une **structure du données**, et que les langages
+appellerait une **structure de donnée**, et que les langages
 objets appellent une **classe**.
 
 Pour la créer et l'utiliser, on aurait le programme complet suivant (les explications
@@ -255,11 +255,226 @@ for e in promo :
 
 C'est beau, c'est propre.
 
-
-
-Passons maintenant a ce qui va permettre de
-
 ### Les Méthodes
+
+Là ou cela devient vraiment bon, c'est quand les objets peuvent avoir leur propres
+fonctions. vous avez déja utilisé cela avec pygame par exemple :
+```python
+fenetre.blit(myImage,myRect)
+```
+*fenetre* était bien une variable. On appelait donc une fonction de la variable...
+Ces fonctions internes aux objets sont appelées des **méthodes**.
+Voyons comment créer une.
+
+#### Création d'une méthode
+
+Reprenons notre fonction d'affichage d'un étudiant et transformons la en méthode.
+Nous avons d'une part notre classe qui contient sa fonction *__init__*
+(qui entre nous est une méthode) :
+```python
+class Etudiant():
+  def __init___(self, nom, prenom):
+    self.nom = nom
+    self.prenom = prenom
+    self.notes = []
+```
+D'autre part, nous avons notre fonction *afficher*
+```python
+def afficher(etudiant):
+    print (etudiant.nom, etudiant.prenom, etudiant.notes)
+```
+
+Nous allons signaler à la classe que la fonction afficher fait partie de la classe.
+Pour cela, nous indentons la partie correspondant à la fonction.
+
+```python
+class Etudiant():
+    def __init___(self, nom, prenom):
+      self.nom = nom
+      self.prenom = prenom
+      self.notes = []
+
+    def afficher(etudiant):
+      print (etudiant.nom, etudiant.prenom, etudiant.notes)
+```
+
+Mais il ne s'agit pas pour un objet de type *Etudiant* d'afficher un étudiant qu'on
+lui donne, il s'agit pour notre objet de s'afficher lui même.
+Nous utilisons encore une fois le mot clef *self* pour désigner l'objet, vu depuis l'objet.
+Cela nous donne le code suivant :
+```python
+class Etudiant():
+  def __init___(self, nom, prenom):
+    self.nom = nom
+    self.prenom = prenom
+    self.notes = []
+
+  def afficher(self):
+      print (self.nom, self.prenom, self.notes)
+```
+
+Recapitulons. Pour créer une méthode dans une classe :
+1. on l'indente correctement
+2. on lui ajoute **self** comme premier paramètre.
+
+Pour s'en servir, notre programme principal va demander à un etudiant de s'afficher lui même :
+
+```python
+etu = Etudiant("Uzumaki","Naruto")
+etu.afficher()
+```
+ou dans un tableau :
+```python
+promo = []
+
+etu = Etudiant("Uzumaki","Naruto")
+promo.append(etu)
+
+etu = Etudiant("Uchiwa","Sazuke")
+promo.append(etu)
+
+
+for e in promo :
+  e.afficher()
+```
+Vous le voyez, à l'appel de la fonction, on ne précise pas **self** ou quoique ce soit.
+python va l'ajouter a votre place.
+
+
+L'intérêt de ces méthodes ne vous saute pas aux yeux ?
+c'est normal. L'idée générele est que vous voulez pouvoir utiliser un objet
+sans vraiment avoir besoin de savoir ce qui se passe dedans.
+En fait, souvent, ce n'est pas la même personne qui code les classes et qui les utilise.
+
+Pour bien s'en rendre compte, déportons notre classe dans un autre fichier.
+Nous aurons donc 2 fichiers :
+- *etudiant.py*
+- *02_03_main.py*
+
+Le fichier *etudiant.py* contient le code de la classe Etudiant.
+```python
+class Etudiant():
+  def __init___(self, nom, prenom):
+    self.nom = nom
+    self.prenom = prenom
+    self.notes = []
+
+  def afficher(self):
+      print (self.nom, self.prenom, self.notes)
+```
+le fichier *02_04_main.py* contiendra le code du programme principal.
+
+```python
+from etudiant import Etudiant
+
+promo = []
+
+etu = Etudiant("Uzumaki","Naruto")
+promo.append(etu)
+
+etu = Etudiant("Uchiwa","Sazuke")
+promo.append(etu)
+
+
+for e in promo :
+  e.afficher()
+```
+La première ligne dit : "dans le fichier *etudiant.py* (considéré comme un *module*), importe la classe Etudiant".
+
+#### Modification de l'objet *Etudiant*
+
+Nous allons maintenant jouer un peu avec notre objet pour lui ajouter des
+fonctionnalités et des attributs. Il sera de votre ressort d'essayer par vous
+même. La solution figure en dessous.
+
+1. Ajout d'un attribut *nomComplet*, construit par le constructeur,
+sur le modèle suivant : si l'étudiant s'appelle Vincenzo Delapaegas, son nom
+complet serait "Mister Vincenzo The Great Delapaegas"
+
+2. Création d'une méthode qui ajoute une note à l'étudiant.
+
+3. Création d'une méthode qui calcule la moyenne de l'étudiant.
+
+4. Création d'une méthode qui permet à un étudiant de se comparer à un autre
+(nom de la méthode : *isBetter*, renvoie True si l'étudiant est meilleur que l'etudiant passé en paramètre à la fonction).
+
+Evidemment, pour toutes ces méthodes, il faudra que le programme principal les teste.
+
+
+```python
+
+class Etudiant():
+    def __init__(self, nom, prenom, notes = []):
+        self.nom = nom
+        self.prenom= prenom
+        self.nomComplet = "Mister or Miss "+nom+" The Great "+prenom
+        self.notes = notes
+
+    def afficher(self):
+        print (self.nom,self.prenom, self.notes)
+
+    def ajouterNote(self, note):
+        self.notes.append(note)
+
+
+    def getMoyenne(self):
+        moy = 0.0
+        for n in self.notes :
+            moy+= n
+        if not len(self.notes) == 0:
+            moy = moy / len(self.notes)
+
+        return moy
+
+    def isBetter(self,etudiant):
+        if (self.getMoyenne() > etudiant.getMoyenne()):
+            return True
+        return False
+
+```
+
+```python
+from etudiant import Etudiant
+
+def afficherPromo(promo):
+    for etu in promo :
+        etu.afficher()
+
+a = 5
+b = a
+print (a,b)
+a = a+1
+print (a,b)
+
+
+promo = []
+
+e1 = Etudiant("Georges", "Anthony",[15,19])
+
+e1.afficher()
+
+promo.append(e1)
+
+e2 = Etudiant("Valerius","Landry")
+e2.ajouterNote(12)
+e2.ajouterNote(16)
+e2.ajouterNote(14)
+promo.append(e2)
+
+afficherPromo(promo)
+
+moy = e1.getMoyenne()
+print(moy)
+
+print(e2.getMoyenne())
+
+if e1.isBetter(e2):
+    print ("bravo ", e1.nomComplet)
+else:
+    print ("bravo ", e2.nomComplet)
+```
+
+Ok. Normalement, tout ceci ne vous a pas posé trop de problèmes. Voyons donc ce qui rend tout ceci vraiment classieux : la notion d'héritage.
 
 
 ### les fichiers
@@ -267,3 +482,251 @@ Passons maintenant a ce qui va permettre de
 Les sources de tout ce que nous avons fait dans ce cours sont dans le répertoire [Sources](../Sources/index.md).
 On y trouvera en particulier
 les exemples sur les fonctions dans les fichiers dont le nom commence par **02_0** dans le répertoire [Sources](../Sources/index.md)
+
+## Troisième Cours : L'héritage
+
+Tout ceci n'est pas bien compliqué, c'est la mise en oeuvre intelligente de tout
+ceci dans des cas réels de programmation qui demande reflexion. Pour vous
+expliquer les concepts, je vais prendre des exemples simples.
+
+Cet exemple est complètement pompé sur un cours qui parle de php et disponible à
+l'adresse suivante :  
+[https://openclassrooms.com/fr/courses/1665806-programmez-en-oriente-objet-en-php](https://openclassrooms.com/fr/courses/1665806-programmez-en-oriente-objet-en-php)
+
+Il s'agit donc de créer un micro jeu d'aventures, de type jeu de rôles, mettant
+en jeu des magiciens, des barbares...
+
+Nous avons donc des personnages qui ont des points de vie, qui peuvent attaquer
+et prendre des dégâts. Comme nous avons bien compris l'intérêt de la POO pour ce genre de cas, nous allons créer une classe Personnage.
+
+### La classe Personnage
+'''python
+class Personnage():
+    def __init__(self, nom):
+        self.nom = nom
+        self.attaque = 2
+        self.hp = 3
+
+    def recevoirDegats(self, degats):
+        self.hp -= degats
+        if self.hp <=0 :
+            print ("Arghhh, c'est la fin pour moi. Souvenez vous de", self.nom)
+
+    def attaquer(self, perso):
+        print ("Subit le courroux de", self.nom, "je vais te fumer ", perso.nom)
+        perso.recevoirDegats(self.attaque)
+
+    def afficher(self):
+        print ("je suis ", self.nom, "il me reste ", self.hp, "points de vie")
+'''
+Nous allons aussi avoir un programme principal qui utilise cette classe :
+
+```python
+from Personnage import Personnage
+
+magicMike = Personnage("Mike the Great")
+
+bigBill = Personnage("Bill theBarbarian")
+
+magicMike.afficher()
+bigBill.afficher()
+
+magicMike.attaquer(bigBill)
+
+magicMike.afficher()
+bigBill.afficher()
+
+bigBill.attaquer(magicMike)
+bigBill.attaquer(magicMike)
+
+magicMike.afficher()
+bigBill.afficher()
+```
+
+### Le Barbare
+Nous souhaiterions maintenant ajouter des types de personnages.
+Par exemple, un personnage pourrait être, soit un magicien, soit un barbare.
+Le barbare est un personnage un peu plus costaud.
+
+Nous aimerions conserver tout ce qui a été fait pour les personnages, en modifiant
+ce dont nous avons besoin.
+
+La classe Barbare va hériter de la classe Personnage : un objet de type Barbare
+aura automatiquement les mêmes attributs et méthodes que la classe Personnage.
+Gardez ceci en tête, on peut vouloir que Barbare hérite de Personnage car un Barbare est un Personnage. (le contraire serait stupide)
+
+```python
+class Barbare(Personnage):
+  pass
+```
+Notre programme principal a été a peine modifié.
+```python
+from Personnage import Personnage
+from Barbare import Barbare
+
+magicMike = Personnage("Mike the Great")
+
+bigBill = Barbare("Bill theBarbarian")
+
+magicMike.afficher()
+bigBill.afficher()
+
+magicMike.attaquer(bigBill)
+
+magicMike.afficher()
+bigBill.afficher()
+
+bigBill.attaquer(magicMike)
+bigBill.attaquer(magicMike)
+
+magicMike.afficher()
+bigBill.afficher()
+```
+Que s'est il passé ? Quand je demande la création d'un Barbare, comme la classe Barbare ne propose pas de constructeur, Python appelle automatiquement la méthode *__init__* de la classe parente
+
+Bon, mais si l'on veut améliorer un peu notre barbare, nous allons lui créer son propre constructeur.
+
+```python
+from Personnage import Personnage
+
+class Barbare(Personnage):
+    def __init__(self,nom):
+        # je crée un personnage
+        Personnage.__init__(self,nom)
+
+        # je modifie ce qui m'intéresse
+        self.hp = 5
+        self.attaque = 4
+```
+Executez votre programme principal, et notez que Mike est mort prématurément maintenant.
+
+Explications :
+- Quand on crée un Barbare, python cherche une méthode *__init__*.
+Comme il en trouve une dans la classe Barbare, il l'applique.
+- Comme nous voulons en fait créer un Personnage, nous appelons explicitement le
+constructeur de cette classe. Notez bien comment j'apppelle le constructeur de
+la classe Personnage en lui passant *self*.
+- Nous modifions les paramètres qui nous intéressent
+
+
+### Le Magicien
+
+Nous voulons créer un magicien qui est aussi un personnage.
+Nous voudrions qu'un magicien dispose d'une réserve de magie (mana).
+Si cette réserve est suffisamment grande, il peut lancer une boule de feu.
+Ici, notre nouvelle classe va donc avoir un nouvel attribut par rapport
+à la classe Personnage.
+
+Nous allons également lui créer une méthode bouleDeFeu.
+```python
+from Personnage import Personnage
+
+class Magicien(Personnage):
+    def __init__(self,nom):
+        # je crée un personnage
+        Personnage.__init__(self,nom)
+
+        # je modifie ce qui m'intéresse
+        self.mana = 5
+        self.attaqueBdF = 8
+
+    def bouleDeFeu(self, perso):
+        if self.mana >= 5 :
+            print ("Subit le courroux de", self.nom, ", boule de feu dans ta face",
+            perso.nom)
+            perso.recevoirDegats(self.attaqueBdF)
+            self.mana -= 4
+        else :
+            print("Heu, non rien")
+```
+je pourrais utiliser cela comme suit :
+```python
+from Personnage import Personnage
+from Barbare import Barbare
+from Magicien import Magicien
+
+magicMike = Magicien("Mike the Great")
+
+bigBill = Barbare("Bill theBarbarian")
+
+magicMike.afficher()
+bigBill.afficher()
+
+magicMike.bouleDeFeu(bigBill)
+
+magicMike.afficher()
+bigBill.afficher()
+```
+mais c'est dommage d'avoir du modifier le programme principal pour béneficier de la boule de feu.
+Nous allons donc **redéfinir** la méthode *attaquer* de la classe *Personnage*
+dans la classe *Magicien*.
+
+```python
+from Personnage import Personnage
+
+class Magicien(Personnage):
+    def __init__(self,nom):
+        # je crée un personnage
+        Personnage.__init__(self,nom)
+
+        # je modifie ce qui m'intéresse
+        self.mana = 5
+        self.attaqueBdF = 8
+
+    def bouleDeFeu(self, perso):
+        if self.mana >= 5 :
+            print ("boule de feu dans ta face", perso.nom)
+            perso.recevoirDegats(self.attaqueBdF)
+            self.mana -= 4
+        else :
+            print("Heu, non rien")
+
+    def attaquer(self, perso):
+        if self.mana >= 5 :
+            self.bouleDeFeu(perso)
+        else :
+            Personnage.attaquer(self,perso)
+
+```
+Du coup, notre programme principal n'a plus besoin que d'utiliser la fonction
+*attaquer*. C'est le Personnage (ici, le magicien) qui choisit une méthode adaptée.
+```python
+from Personnage import Personnage
+from Barbare import Barbare
+from Magicien import Magicien
+
+magicMike = Magicien("Mike the Great")
+
+bigBill = Barbare("Bill the Barbarian")
+
+magicMike.afficher()
+bigBill.afficher()
+
+magicMike.attaquer(bigBill)
+
+magicMike.afficher()
+bigBill.afficher()
+
+bigBill.attaquer(magicMike)
+bigBill.attaquer(magicMike)
+
+magicMike.afficher()
+bigBill.afficher()
+```
+
+Cette notion de **redéfinition** est primordiale en POO. Que fait python à l'appel de la fonction attaquer ? Il cherche dans la classe la plus en bas de l'arbre d'héritage (le plus près de l'objet) si elle propose une méthode *attaquer*. Si oui, il l'applique. Sinon, il regarde si son parent le plus proche en propose une. Si oui, il l'applique. Et ainsi de suite.
+
+De la même façon que les fonctions avaient souvent pour objectif de déplacer
+la difficulté hors du programme principal, avec les objets, nous pouvons
+déplacer la difficulté dans les classes. Le mécanisme de redéfinition permet
+d'adapter nos fonctions à nos objets de façon très précise.
+
+Le programmeur qui utilise nos classes n'a souvent aucune idée de la façon dont
+les choses sont implémentées. Il n'a besoin que de documentation sur l'utilisation des objets.
+
+
+### les fichiers
+
+Les sources de tout ce que nous avons fait dans ce cours sont dans le répertoire [Sources](../Sources/index.md).
+On y trouvera en particulier
+les exemples sur les fonctions dans les fichiers dont le nom commence par **03_0** dans le répertoire [Sources](../Sources/index.md)
