@@ -217,3 +217,5 @@ if e1.isBetter(e2):
 else:
     print ("bravo ", e2.nomComplet)
 ```
+
+Ok. Normalement, tout ceci ne vous a pas posé trop de problèmes. Voyons donc ce qui rend tout ceci vraiment classieux : la notion d'héritage.
