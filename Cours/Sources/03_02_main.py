@@ -1,21 +1,44 @@
 from Personnage import Personnage
 from Barbare import Barbare
 from Magicien import Magicien
+import random
 
-magicMike = Magicien("Mike the Great")
+def nettoyer(listePerso):
+    newList = []
+    for p in listePerso:
+        if p.hp >0:
+            newList.append(p)
 
-bigBill = Barbare("Bill the Barbarian")
+    return(newList)
 
-magicMike.afficher()
-bigBill.afficher()
+def afficher(listePerso, turn):
+    print ("======Tour ",turn, "===========")
+    for p in listePerso:
+        p.afficher()
+    print()
 
-magicMike.attaquer(bigBill)
+assemblee = []
 
-magicMike.afficher()
-bigBill.afficher()
+p = Personnage("Popaul the farmer")
+assemblee.append(p)
+p = Magicien("Mandrix the Great")
+assemblee.append(p)
+p = Barbare("Cohen the Barbarian")
+assemblee.append(p)
 
-bigBill.attaquer(magicMike)
-bigBill.attaquer(magicMike)
+turn = 0
 
-magicMike.afficher()
-bigBill.afficher()
+
+while (len(assemblee) > 1):
+    turn +=1
+    afficher(assemblee, turn)
+    # Selection de 2 joueurs au hasard.
+    twoGuys = random.sample(assemblee,2)
+
+    # Le premier attaque le second.
+    twoGuys[0].attaquer(twoGuys[1])
+    assemblee = nettoyer(assemblee)
+
+print()
+print ("================")
+print ("Vainqueur : ", assemblee[0].nom)
