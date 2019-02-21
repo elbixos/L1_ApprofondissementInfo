@@ -5,6 +5,8 @@
 - [02_03_methods.py](./02_03_methods.py)
 - [02_04_main.py](./02_04_main.py)
 - [03_02_main.py](./03_02_main.py)
+- [AttaqueMagique.py](./AttaqueMagique.py)
+- [Attaque.py](./Attaque.py)
 - [Barbare.py](./Barbare.py)
 - [etudiant.py](./etudiant.py)
 - [index.md](./index.md)
