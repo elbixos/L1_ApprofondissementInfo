@@ -5,10 +5,13 @@ class Attaque():
         self.degats = degats
         self.texte = texte
 
-    def use(self, user, ennemi):
+    def use(self, user, ennemi, modifier = None):
+        if modifier == None :
+            modifier = user.force
         if self.isUsable(user) :
-            print (self.texte, ennemi.nom, -(self.degats+user.force), "HP")
-            ennemi.recevoirDegats(self.degats+user.force)
+            degats = self.degats+modifier
+            print (self.texte, ennemi.nom, -(degats), "HP")
+            ennemi.recevoirDegats(degats)
             return True
         print ("You cannot use this")
         return False

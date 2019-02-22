@@ -6,8 +6,9 @@ class AttaqueMagique(Attaque):
         self.coutMana = degats
 
     def use(self, user, ennemi):
-        Attaque.use(self,user, ennemi)
-        user.mana -= self.coutMana
+        if Attaque.use(self,user, ennemi, modifier = user.magie) :
+          user.mana -= self.coutMana
+
 
     def isUsable(self, perso):
         if perso.mana >= self.coutMana:
