@@ -5,6 +5,7 @@ class Personnage():
     def __init__(self, nom):
         self.nom = nom
         self.force = 0
+        self.magie = 0
         self.hp = 4
         self.alive = True
         self.attaques=[]

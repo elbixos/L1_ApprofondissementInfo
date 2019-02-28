@@ -8,7 +8,7 @@ class Barbare(Personnage):
         Personnage.__init__(self,nom)
 
         # je modifie ce qui m'intéresse
-        self.hp = 5
+        self.hp = 6
         self.force = 2
 
         self.attaques.append(Attaque("Grosse taloche", 2,"Grosse taloche sur eut' bouche"))
