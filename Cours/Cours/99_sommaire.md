@@ -8,6 +8,8 @@
 
 - [Cours 3](03_cours3.md) : Les Classes : héritage
 
+- [Cours 4](04_cours4.md) : Dictionnaires et autres trucs
+
 
 ## Cours Complet
 

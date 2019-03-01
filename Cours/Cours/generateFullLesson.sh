@@ -9,6 +9,8 @@ fi
 source generateChapter.sh 1
 source generateChapter.sh 2
 source generateChapter.sh 3
+source generateChapter.sh 4
+
 
 ## generation du fichier complet.
 LISTE=$(ls 000_title.md 00_intro.md 0*_[0-9]*.md)
