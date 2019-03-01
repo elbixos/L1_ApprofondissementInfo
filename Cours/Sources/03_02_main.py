@@ -26,8 +26,15 @@ assemblee.append(p)
 p = Barbare("Cohen the Barbarian")
 assemblee.append(p)
 
-turn = 0
+for p in assemblee :
+    p.fullPresentation()
 
+print()
+print("======GOOOOOOOOOOOOOOOOOOOOO==========")
+
+print()
+
+turn = 0
 
 while (len(assemblee) > 1):
     turn +=1

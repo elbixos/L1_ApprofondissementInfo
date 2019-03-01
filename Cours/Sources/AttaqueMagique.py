@@ -1,8 +1,8 @@
 from Attaque import Attaque
 
 class AttaqueMagique(Attaque):
-    def __init__(self, nom, degats, texte,coutMana):
-        Attaque.__init__(self,nom, degats,texte)
+    def __init__(self, nom, degats, texte,coutMana,userType="magicien"):
+        Attaque.__init__(self,nom, degats,texte,userType)
         self.coutMana = degats
 
     def use(self, user, ennemi):
@@ -11,6 +11,7 @@ class AttaqueMagique(Attaque):
 
 
     def isUsable(self, perso):
-        if perso.mana >= self.coutMana:
-            return True
+        if Attaque.isUsable(self,perso) :
+            if perso.mana >= self.coutMana:
+                return True
         return False
