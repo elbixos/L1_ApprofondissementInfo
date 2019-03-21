@@ -97,17 +97,20 @@ Tant que vous y êtes, créez une méthode dans *ElementGraphique* qui dit si un
 
 Utilisez cette méthode pour gérer le contact entre votre balle et votre joueur.
 
-### Qu'avons nous gagné ?
+#### Qu'avons nous gagné ?
 C'est facile a voir :
-Au lieu de manipuler une balle, construisez un tableau de 3 ou 4 balles.
-Constatez que la manipulation des multiples balles est beaucoup plus facile
-car chaque balle se gère plus ou moins toute seule.
+
+1. Au lieu de manipuler une balle, construisez un tableau de 3 ou 4 balles. Constatez que la manipulation des multiples balles est beaucoup plus facile car chaque balle se gère plus ou moins toute seule.
+
+2. Vous pouvez maintenant vous débrouiller pour que le jeu commence avec une seule balle et qu'une balle soit ajoutée tous les 100 tours de boucles (idéalement toutes les 5 secondes)
+
+3. Débrouillez vous pour que lorsqu'une balle est créee, sa direction soit tirée au hasard.
 
 ### Gestion du joueur
 
 Ce que nous avons fait pour la balle, nous allons le faire pour un joueur.
 
-Creez une classe **Joueur** qui hérite de *ElementGraphique*.
+1. Créez une classe **Joueur** qui hérite de *ElementGraphique*.
 Vous pouvez par exemple ajouter un champ **vies** à votre joueur si vous voulez,
 initialisé à 3.
 
@@ -117,12 +120,15 @@ image = pygame.image.load("perso.png").convert_alpha()
 joueur = Joueur(image)
 ```
 
-Ajoutez une méthode *deplacer* qui prend comme argument le tableau de touches
+2. Ajoutez une méthode *deplacer* qui prend comme argument le tableau de touches
 et qui modifie la position du joueur en fonction de ce tableau.
 Votre programme principal appelera cette méthode comme suit :
 ```python
     joueur.deplacer(touches)
 ```
+
+3. En cas de collision, le joueur doit perdre une vie et le programme
+doit s'arreter si le joueur n'a plus de vies.
 
 ### Minimum requis pour la séance suivante
 
