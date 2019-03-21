@@ -232,3 +232,14 @@ base pour le prochain TP.
 - créer la fonction qui déplace la balle. Passez lui tous les arguments dont elle a besoin. (*balle étant un objet, la fonction peut modifier la valeur de ses attributs* )
 
 - Modifiez votre programme pour que l'on ait 3 balles, réunies dans un tableau, qui se déplacent à l'écran.
+
+
+### Minimum requis pour la séance suivante
+
+Cette section décrit ce qu'il faut, **au minimum**, pour pouvoir entamer sereinement le TP suivant. Evidemment, si vous êtes allé au bout du TP décrit dans ce document, vous êtes plus loin que cela.
+
+Pour le début du TP2, vous devrez au minimum (pour avoir 10 au TP1) avoir un programme avec :
+
+- un personnage (ElementGraphique) qui se déplace avec les touches.
+- une balle (ElementGraphique) qui se déplace automatiquement et rebondit.
+- en cas de collision entre la balle et le personnage, le jeu s'arrete.
