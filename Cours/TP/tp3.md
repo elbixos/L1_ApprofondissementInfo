@@ -164,7 +164,8 @@ principal :
 - *ajouterBalles*
 car ces actions ne doivent pas être attachée à une classe existante.
 
-Toutes les autres actions sont bien placées dans les objets qui doivent s'en occuper.
+Toutes les autres actions sont bien placées dans les objets qui doivent s'en
+occuper.
 
 ### A faire ce TP ci
 
