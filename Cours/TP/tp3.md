@@ -61,6 +61,10 @@ while continuer == True :
     # deplacement du joueur
     joueur.deplacer(touches)
 
+    # déplacement des balles
+    for b in balles:
+        b.deplacer()
+
     # Detection des collisions joueur / balles :
     for b in balles :
         if joueur.collide(b):
@@ -68,10 +72,7 @@ while continuer == True :
             if joueur.estMort():
                 continuer = False
 
-    # déplacement des balles
-    for b in balles:
-        b.deplacer()
-
+    # Affichage des elements
     fond.afficher()
     joueur.afficher()
     texte.afficher()
