@@ -44,7 +44,7 @@ horloge = pygame.time.Clock()
 
 # En avant !
 fps = 30
-continuer = False
+continuer = True
 time = 0
 while continuer == True :
     horloge.tick(fps)
