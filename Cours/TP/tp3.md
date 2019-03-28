@@ -1,9 +1,12 @@
 
 ## TP 3.
 
+
 Normalement, à ce stade, vous devriez avoir fini le TP 2,
 et donc avoir un joueur qui se déplace,
 et des balles qui s'ajoutent toutes seules régulièrement.
+
+### La petite pause reflexion
 
 Prenons quelques instants pour examiner l'intérêt de notre façon de coder...
 voici ce a quoi devrait ressembler plus ou moins votre programme principal
@@ -95,5 +98,33 @@ et :
 2. la logique du programme apparait clairement.
 
 Quel est l'intérêt de tout ceci ?
-Aucun si votre objectif est de programmer des choses très simple en un temps
-très court. Néanmoins, a terme, vous devrez programmer des choses très complexes.
+Aucun si votre objectif est de programmer des choses très simple
+en un temps très court. Néanmoins, a terme, vous devrezprogrammer des choses
+très complexes, a plusieurs. Dans ce cas, il est impératif que votre programme
+soit aussi facile à comprendre que possible.
+
+1. Imaginez que vous repreniez votre programme du premier
+semestre dans 6 mois, un an ou que vous le donniez a l'un de vos amis et que l'objectif soit d'ajouter une fonctionnalité, j'aurais tendance a penser que ce serait compliqué car vous aurez oublié toute la logique que vous aviez en tête à l'époque.
+2. Imaginez maintenant que l'on vous fournisse toutes les classes (Balle,
+  Joueur,...) avec juste une petite documentation :
+    - pour créer un joueur, utiliser le code
+    ```python
+    joueur = Joueur(image, x,y, fenetre)
+    ```
+    - pour déplacer un joueur, utiliser le code
+    ```python
+    joueur.deplacer()
+    ```
+    Il serait maintenant très facile pour vous de faire le programme principal
+    **sans meme savoir comment ces objets sont codés**.
+
+
+A terme, dans la plupart de vos programmes, **vous utiliserez des librairies externes
+de fonctions ou de classes, que vous combinerez pour faire des programmes**.
+Parfois, vous **créerez des librairies qui seront utilisées par d'autres**
+
+Cette capacité à recycler le code des autres est ce qui a rendu l'informatique
+aussi efficace (et omniprésente dans notre vie quotidienne). Négliger ceci ferait
+de vous un piêtre programmeur.
+
+### A faire ce TP ci 
