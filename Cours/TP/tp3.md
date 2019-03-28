@@ -14,6 +14,22 @@ voici ce a quoi devrait ressembler plus ou moins votre programme principal
 ```python
 import toutBiten
 
+def lireImages():
+  images = {}
+  images["fond"] = pygame.image.load("background.jpg").convert()
+  images["perso"] = pygame.image.load("perso.png").convert_alpha()
+  images["balle"] = pygame.image.load("perso.png").convert_alpha()
+
+  # Choix de la police pour le texte
+  font = pygame.font.Font(None, 34)
+  images["texte"] = font.render('<Escape> pour quitter', True, (255, 255, 255))
+
+  return images
+
+def ajouterBalles(balles, compteur, fps, duree):
+  if compteur/fps == duree:
+    balles.append(Balle(images["balle"],largeur/2, hauteur/2, fen=fenetre))
+
 ## Initialisation de la fenetre et crÃ©ation
 pygame.init()
 #creation de la fenetre
@@ -54,9 +70,8 @@ while continuer == True :
     touches = pygame.key.get_pressed();
     evenements = pygame.event.get()
 
-    # on ajoute des balles si c'est le moment.
-    if time/fps == 5: # ca fait 5s !
-      balles.append(Balle(images["balle"],largeur/2, hauteur/2, fen=fenetre))
+    # on ajoute des balles toutes les 5 secondes.
+    ajouterBalles(balles, time, fps, 5)
 
     # deplacement du joueur
     joueur.deplacer(touches)
@@ -90,6 +105,9 @@ while continuer == True :
             continuer = 0	   # On arrete la boucle
 
 ```
+
+#### Coder proprement, pourquoi ?
+
 Normalement, vous devriez trouver ce code beaucoup plus lisible
 que ce que vous aviez fait au premier semestre.
 
@@ -100,8 +118,8 @@ et :
 
 Quel est l'intérêt de tout ceci ?
 Aucun si votre objectif est de programmer des choses très simple
-en un temps très court. Néanmoins, a terme, vous devrezprogrammer des choses
-très complexes, a plusieurs. Dans ce cas, il est impératif que votre programme
+en un temps très court. Néanmoins, à terme, vous devrez programmer des choses
+très complexes, à plusieurs. Dans ce cas, il est impératif que votre programme
 soit aussi facile à comprendre que possible.
 
 1. Imaginez que vous repreniez votre programme du premier
@@ -117,7 +135,7 @@ semestre dans 6 mois, un an ou que vous le donniez a l'un de vos amis et que l'o
     joueur.deplacer()
     ```
     Il serait maintenant très facile pour vous de faire le programme principal
-    **sans meme savoir comment ces objets sont codés**.
+    **sans même savoir comment ces objets sont codés**.
 
 
 A terme, dans la plupart de vos programmes, **vous utiliserez des librairies externes
@@ -125,8 +143,28 @@ de fonctions ou de classes, que vous combinerez pour faire des programmes**.
 Parfois, vous **créerez des librairies qui seront utilisées par d'autres**
 
 Cette capacité à recycler le code des autres est ce qui a rendu l'informatique
-aussi efficace (et omniprésente dans notre vie quotidienne). Négliger ceci ferait
-de vous un piêtre programmeur.
+aussi efficace (et omniprésente dans notre vie quotidienne). Négliger ceci
+ferait de vous un piêtre programmeur.
+
+#### Coder proprement, comment ?
+On l'a vu :
+- l'utilisation de fonctions permet de déporter les problèmes et d'éviter de
+dupliquer du code.
+- l'utilisation de classes permet de bien ranger les variables et par l'héritage, d'améliorer la lisibilité.
+
+Mais il vous faut aussi quelques règles simples pour bien concevoir vos
+classes. On pourrait résumer en : **Un objet doit savoir faire TOUT ce qui releve de lui, et rien de plus**. Demandez vous toujours qui doit gérer un problème.
+
+Par exemple : mes balles sont rassemblées dans un tableau (*balles*). Qui gère ce tableau ? Une balle ne doit pas décider d'ajouter une balle au tableau.
+Ici, c'est le programme principal qui va s'en charger.
+
+C'est ainsi qu'on se retrouve avec deux fonctions associées au programme
+principal :
+- *lireImages*
+- *ajouterBalles*
+car ces actions ne doivent pas être attachée à une classe existante.
+
+Toutes les autres actions sont bien placées dans les objets qui doivent s'en occuper.
 
 ### A faire ce TP ci
 
