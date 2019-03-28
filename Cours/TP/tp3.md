@@ -127,4 +127,29 @@ Cette capacité à recycler le code des autres est ce qui a rendu l'informatique
 aussi efficace (et omniprésente dans notre vie quotidienne). Négliger ceci ferait
 de vous un piêtre programmeur.
 
-### A faire ce TP ci 
+### A faire ce TP ci
+
+Pour ce TP, je vais vous simplement vous donner les consignes et vous allez essayer de créer les classes necessaires ou recycler les classes existantes.
+
+il faudra donc que votre programme :
+- ajoute de temps à autres des **Bonus**
+- il y aura au minimum 2 sortes de Bonus :
+  - un qui ajoute une vie
+  - un qui augmente la vitesse du joueur
+- Fonctionnement des bonus :
+  - ils apparaissent en haut de l'écran
+  - ils descendent verticalement
+  - il peut y en avoir plusieurs en même temps
+  - ils sont détruits quand ils sortent de l'écran.
+  - si le joueur touche un bonus, il bénéficie de l'effet du bonus.
+
+Les petits plus possibles :
+- inventer d'autres sortes de bonus
+- faire des trajectoires plus jolies pour les bonus (l'ellipse descendante serait parfait)
+
+### Minimum requis pour la séance suivante
+
+Cette section décrit ce qu'il faut, **au minimum**, pour pouvoir entamer sereinement le TP suivant. Evidemment, si vous êtes allé au bout du TP décrit dans ce document, vous êtes plus loin que cela.
+
+Pour le début du TP4, vous devrez au minimum (pour avoir 10 au TP3) avoir un programme avec :
+- des bonus qui ajoutent une vie au joueur s'il les touche
