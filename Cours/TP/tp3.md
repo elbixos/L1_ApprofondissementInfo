@@ -144,8 +144,10 @@ il faudra donc que votre programme :
   - si le joueur touche un bonus, il bénéficie de l'effet du bonus.
 
 Les petits plus possibles :
+- le bonus de vitesse n'a qu'une durée d'effet limité sur le joueur.
 - inventer d'autres sortes de bonus
 - faire des trajectoires plus jolies pour les bonus (l'ellipse descendante serait parfait)
+- faire évoluer le score en fonction du temps et du nombre de balles.
 
 ### Minimum requis pour la séance suivante
 
