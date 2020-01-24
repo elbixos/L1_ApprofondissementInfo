@@ -24,7 +24,9 @@ Si vous êtes dans cette UE, je suppose que vous savez :
 - faire des boucles et des if.
 - savez utiliser des tableaux (1D)
 
-Si c'est le cas, vous pouvez aller voir les cours de l'UE en suivant [ce lien](Cours/README.md).
+
+Si c'est le cas, vous pouvez aller voir **les cours** de l'UE en suivant [ce lien](Cours/README.md).
+
 Si ce n'est pas le cas, envisagez de vous inscrire plutôt dans l'UE
 **Renforcement Informatique** ou prévoyez de travailler pour corriger vos lacunes.
 
