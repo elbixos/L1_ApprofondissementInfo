@@ -122,7 +122,7 @@ voulue de l'élément.
 Nous allons utiliser des parametres optionnels*
 
 les parametres $x$ et $y$ peuvent ou pas être passés a la fonction. Si lors de
-l'appel de la fonction, on ne les utilise pas, nous leur feront prendre la
+l'appel de la fonction, on ne les utilise pas, nous leur ferons prendre la
 valeur par défaut $0$.
 
 Encore une fois, vous pouvez essayer tout seul. Voici le résultat voulu pour la classe.
@@ -194,14 +194,9 @@ Voici la classe :
 ```python
 class ElementGraphique():
     # Le constructeur basique
-    def __init__(self, img):
+    def __init__(self, img, x , y):
         self.image = img
         self.rect = self.image.get_rect()
-
-    # Constructeur qui positionne
-    def __init__(self, img, x , y):
-        # tout d'abord on appelle le constructeur précédent.
-        ElementGraphique.__init__(self,img)
 
         # puis on positionne l'element.
         self.rect.x = x
@@ -214,9 +209,9 @@ class ElementGraphique():
 et la partie du programme principal qui affiche les éléments.
 
 ```python
-    fond.afficher((fenetre)
-    perso.afficher((fenetre)
-    balle.afficher((fenetre)
+    fond.afficher(fenetre)
+    perso.afficher(fenetre)
+    balle.afficher(fenetre)
 ```
 
 Le bilan :
