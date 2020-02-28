@@ -21,8 +21,8 @@ Dans un fichier *Balle.py*, vous allez donc avoir ceci :
 
 ```python
 class Balle (ElementGraphique):
-    def __init__(self,img):
-        ElementGraphique.__init__(self, img)
+    def __init__(self,img,x=0,y=0):
+        ElementGraphique.__init__(self, img,x,y)
 ```
 
 Pour déclarer notre balle, dans notre programme principal,
@@ -30,9 +30,7 @@ nous allons maintenant déclarer la création de la balle comme suit :
 
 ```python
 image = pygame.image.load("balle.png").convert_alpha()
-balle = Balle(image)
-balle.rect.x = 140
-balle.rect.y = 270
+balle = Balle(image,140,270)
 ```
 
 Pour le moment, ce que nous avons fait n'a servi à rien, sauf que *balle*
@@ -117,7 +115,7 @@ initialisé à 3.
 Votre joueur devrait être initialisé comme suit :
 ```python
 image = pygame.image.load("perso.png").convert_alpha()
-joueur = Joueur(image)
+joueur = Joueur(image,10,30)
 ```
 
 2. Ajoutez une méthode *deplacer* qui prend comme argument le tableau de touches
