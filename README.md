@@ -1,4 +1,4 @@
-# Renforcement Informatique
+# Approfondissement Informatique
 # Licence Première année
 # Vincent Pagé.
 
