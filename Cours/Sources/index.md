@@ -1,5 +1,6 @@
+- [01_00_tableau.py](./01_00_intro_python.py)
 - [01_01_tableau.py](./01_01_tableau.py)
-- [01_02_fonctions.py](./01_02_fonctions.py)
+- [01_02_fonctions2.py](./01_02_fonctions2.py)
 - [02_01_classesAsStruct.py](./02_01_classesAsStruct.py)
 - [02_02_betterClassesAsStruct.py](./02_02_betterClassesAsStruct.py)
 - [02_03_methods.py](./02_03_methods.py)
