@@ -7,7 +7,7 @@ Je vous invite a retourner voir les parties de cours correspondantes :
 [https://elbixos.github.io/L1_OptionInfo/Cours/](https://elbixos.github.io/L1_OptionInfo/Cours/)
 
 
-Nous avons, pendant ce cours, parlé de **python**, des  **tableaux** et des **fonctions**.
+Nous avons pendant ce cours, en particulier pour les étudiants de PASS, parlé de **python**, des  **tableaux** et des **fonctions**.
 
 En revanche, nous avons revu calmement ces notions, et les exemples développés
 pendant le cours sont disponibles ci dessous.
