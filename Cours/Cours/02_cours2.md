@@ -1,6 +1,21 @@
 
 ## Second Cours : Les Classes
 
+### Mais d'abord : pour les étudiants de Pass
+
+Nous avons vu la fin du tutoriel sur le jeu vidéo.
+Vous auriez déja du récupérer les sources et les images de ce tuto.
+Voici le code de ce que l'on a fait en cours. Regardez le cours d'option info
+des L1 informatique si certains points vous paraissent nébuleux...
+
+- [code fait en cours](../Sources/02_00_tuto_jeu_video.py)
+
+Placez ce code dans le repertoire ou vous avez décompressé le zip du tuto pour
+pouvoir le lancer (les images doivent se trouver dans le meme répertoire)
+
+### Ok, les Classes...
+
+
 Il s'agit ici de vous présenter un peu de programmation Objet par l'exemple.
 Dans un premier temps, nous allons voir les objets comme la réunion de plusieurs
 variables décrivant l'objet qui nous intéresse.
