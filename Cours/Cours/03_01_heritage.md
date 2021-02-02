@@ -14,7 +14,7 @@ et prendre des dégâts. Comme nous avons bien compris l'intérêt de la POO pou
 Dans le cours, j'ai repris tout ce qui suit avec des petites modifs.
 Le code final est disponible ici :
 - le fichier des classes : [Perso.py](../Sources/Perso.py)
-- le programme principal : [AreneV2.py](../Sources/AreneV2.py)
+- le programme principal : [Arenev2.py](../Sources/Arenev2.py)
 
 Ce qui suit est une explication détaillée du principe, les fichiers ci-dessus
 font un peu plus, ou un peu différemment.
