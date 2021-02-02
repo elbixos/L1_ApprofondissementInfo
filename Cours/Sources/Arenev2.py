@@ -3,13 +3,12 @@ from Perso import *
 arene = []
 
 p = Barbare("Ra's al Ghul")
-print(type(p))
 arene.append(p)
 
 p = Perso("Ragnar")
 arene.append(p)
 
-p = Perso("Link")
+p = Chevalier("Link")
 arene.append(p)
 
 # Affichage initial
@@ -33,4 +32,5 @@ while len(arene) > 1 :
         arene.remove(victime)
 
 print("======================")
-print ("Le vainqueur du trophée des champions est ", arene[0].name)
+print ("Le vainqueur du trophée des champions est :")
+arene[0].afficher()
