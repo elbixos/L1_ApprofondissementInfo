@@ -88,6 +88,9 @@ class Chevalier(Perso):
         self.armure = 2
         self.classe = "Chevalier"
 
+        attaque = Attaque("coup d'Excalibur", 4+ random.randint(0,1))
+        self.liste_attaques.append(attaque)
+
     def receive_damages(self, degats):
         if self.armure >0 :
             self.armure-=1
@@ -103,6 +106,8 @@ class Chevalier(Perso):
     def afficher(self):
         super().afficher()
         print("armure :",self.armure)
+
+
 
 
 class Attaque:
