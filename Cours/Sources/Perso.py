@@ -2,7 +2,8 @@ import random
 
 class Perso:
     def __init__(self,name):
-        self.adjectives = ["the Great", "le fourbe", "le sournois", "le guerrier"]
+        self.adjectives =  ["l'alcoolique", "le maigrichon", "le petit"]
+        #["the Great", "le fourbe", "le sournois", "le guerrier"]
         self.name = name + " " + random.choice(self.adjectives)
         self.hp = 8 + random.randint(0,2)
         self.attack = 5 +random.randint(0,2)
@@ -44,3 +45,14 @@ class Perso:
         if self.hp <= 0:
             return False
         return True
+
+class Barbare(Perso):
+
+    def __init__(self,name):
+        ## Construire un Perso
+        super().__init__(name)
+
+        self.hp += 2
+        self.degats += 2
+        self.adjectives =  ["le barbare", "le terrible", "le destructeur"]
+        self.name = name + " " + random.choice(self.adjectives)

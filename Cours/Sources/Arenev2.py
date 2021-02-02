@@ -2,7 +2,8 @@ from Perso import *
 
 arene = []
 
-p = Perso("Ra's al Ghul")
+p = Barbare("Ra's al Ghul")
+print(type(p))
 arene.append(p)
 
 p = Perso("Ragnar")
