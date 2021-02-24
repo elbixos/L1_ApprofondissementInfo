@@ -238,3 +238,88 @@ Pour le début du TP2, vous devrez au minimum (pour avoir 10 au TP1) avoir un pr
 - un personnage (ElementGraphique) qui se déplace avec les touches.
 - une balle (ElementGraphique) qui se déplace automatiquement et rebondit.
 - en cas de collision entre la balle et le personnage, le jeu s'arrete.
+
+### Barême Précis
+
+Puisque la plupart l'ont demandé voici un barême précis. Veuillez noter qu'il est très délicat de poser un barème précis, puisque :
+
+- si je dis : "Faire telle chose vaut x points", cela sous entends que "faire telle chose" a été réalisé sans aide exterieure (notamment la mienne). Que cela ne vous empeche pas de me demander de l'aide, l'idée des TP est surtout de vous faire progresser.
+- si je dis : "Faites une fonction qui....", cela sous entends entre autres que votre fonction n'utilise aucune variable globale (et donc qu'on lui passe les bons arguments en parametres, et eventuellement qu'elle retourne les bons arguments)
+
+
+Pour les PASS, qui ont beaucoup en tête l'idée de concours, vous pouvez aussi vous détendre un peu, la note de cette UE n'a aucune incidence sur votre parcours d'origine, ni, en cas de ré-orientation, sur la suite de votre scolarité. On met plus l'accent sur votre capacité a apprendre, plutôt qu'a obtenir une note précise (meme si 10 est le minimum à viser)
+
+Bref, voici plus ou moins le barême (sur 20) :
+
+- 2 points : faire tourner le programme initial 07_Avec_Classes.py sur votre machine.
+- 1 point : utiliser d'autres images trouvées sur le net.
+- 3 points : avoir un programme principal :
+  - crée un perso et le gère : Il est controlé par les touches du clavier et est coincé par les bords de la fenetre.
+  - crée une balle et le gère : elle se déplace avec une direction initiale de dx=3 pixels, dy =4 pixels à chaque tour de boucle. La balle rebondit sur les bords.
+
+Avec ca, qui est vraiment le minimum minimum (sachant que j'ai fourni le code et les images d'origine), vous avez 6/20. vous savez **faire tourner un pg python utilisant une librairie externe** (pygame).
+
+- 3 points : faire une fonction *deplacer_perso* qui permette de déplacer le personnage.
+- 3 points : faire une fonction *deplacer_balle* qui permette de déplacer la balle.
+
+Sous réserve que vous fassiez tout cela correctement
+(ce que nous avons fait en TP et que vous avez pu voir), vous auriez donc 12.
+**Vous aurez appris a faire des fonctions proprement**.
+
+
+Pour améliorer votre note :
+
+- 3 points :
+  - créer 3 balles au début du programme, placées dans un tableau,
+à des positions différentes, et avec les mêmes déplacements initiaux.
+  - Utilisez la fonction *deplacer_balle* sur chacune de ces balles a l'aide d'une boucle.
+  - Affichez ces balles à l'aide d'une boucle.
+  - testez la collision entre les balles et le perso a l'aide d'une boucle
+
+Ceci vous posera sans doute un problème : le stockage des directions de déplacement de chacune des balles (chacun a le sien, puisque la direction de chacune des balles peut changer a des moments différents). Une idée pourrait être
+de stocker les dx des balles dans un tableau, les dy des balles dans un autre tableau.
+
+Pour vous donner une idée du problème, voici ce à quoi pourrait ressembler la partie du pg principal qui effectue le déplacement des balles sous réserve que :
+- mes dx soient dans un tableau *DX*
+- mes dy soient dans un tableau *DY*
+- mes balles soient des ElementGraphique dans un tableau *balles*
+
+```python
+for i in range(len(balles)):
+  DX[i], DY[i] = deplacer_balle(balles[i], DX[i], DY[i])
+```
+
+Si vous avez bien compris tout ceci, vous savez **ranger vos données dans des structures adaptées a du traitement par boucles** (en gros, des tableaux)...
+et vous n'auriez pas volé une note de 15.
+
+Si vous avez crée 3 balles hors tableau, et des variables dx1,dy1, dx2, dy2, dx3, dy3, ca ne sert a rien pour la note, vous restez à 12... (mais vous avez la satisfaction de voir 3 objets bouger à l'écran)
+
+Pour améliorer votre note, on va faire un peu plus d'objet :
+(ce qui fera l'objet du TP suivant en fait)
+
+- 3 points :
+  - creez une classe Balle :
+    - héritant de ElementGraphique
+    - avec comme propriétés supplémentaires *dx*, *dy*  
+    - avec une méthode deplacer (sans autre argument que self)
+  - creez une classe Perso :
+      - héritant de ElementGraphique
+      - avec comme propriétés supplémentaires *vitesse*  
+      - avec une méthode deplacer (sans comme argument *touches*)
+  - votre programme principal devra créer 3 balles dans un tableau, les deplacer
+  et tester la collision avec le personnage à l'aide d'une boucle.
+
+
+Si vous voulez tenter cette partie après avoir fait tout ce qui précède, vous pouvez rendre 2 fichiers python...
+
+Si jamais vous avez directement tenté cette solution et qu'elle fonctionne, les points précédents sont plus ou moins acquis... (avec des bémols en fonction de la façon dont c'est codé) et vous pouvez ne rendre qu'un seul fichier python.
+
+Si vous faites tout ceci, sans problème, sans aide, et avec un code nickel, nous voila rendu a une note de 18/20. Vous avez **compris les notions d'héritage et savez en tirer parti dans un cas pratique**.
+
+Pour avoir plus (cela suppose que tout ce qui précède soit fait)
+- codez propre
+- ajoutez des fonctionnalités (bonus, menu, son ???)
+
+Pas la peine d'ajouter du son ou un menu si vous n'avez pas un beau tableau de balles sous forme de classe, c'est du temps perdu.
+
+Voila !
