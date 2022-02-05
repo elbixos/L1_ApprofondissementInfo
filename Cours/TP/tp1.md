@@ -6,7 +6,7 @@
 
 Ce qui suit est simplement à lire au début du TP en s'assurant que vous
 comprenez bien.
-au besoin, demandez a votre encadrant des explications complémentaires.
+Au besoin, demandez a votre encadrant des explications complémentaires.
 
 Il s'agit de reprendre calmement ce que nous avons vu dans le dernier cours :
 Transformer le début du petit jeu de balles qui repondissent pour qu'il utilise
@@ -251,15 +251,17 @@ fois pour toute. La correction de bugs est donc plus simple.
 
 **C'est fini pour les rappels**. Maintenant, vous allez devoir vraiment coder.
 
-### Partie 2 : mise en place.
+### Partie 2 : Implémentation.
 
-1. Commencez par récuperer ce code : [07_Avec_Classes.py](07_Avec_Classes.py)
+#### Question 1.
+Commencez par récuperer ce code : [07_Avec_Classes.py](07_Avec_Classes.py)
 Testez et vérifiez qu'il fonctionne
 
 
 Vous allez devoir maintenant modifier le code. Chaque fois que vous faites une modification, testez la pour voir si elle fonctionne.
 
-2. Créez une fonction *deplacer* (externe à la classe ElementGraphique) qui
+#### Question 2.
+Créez une fonction *deplacer* (externe à la classe ElementGraphique) qui
 permettra de déplacer le personage (dans toutes les directions) quand on appuie
 sur les touches (sans controle des bords de fenetre)
 
@@ -269,8 +271,8 @@ tableau de touches qui permet de savoir quelles touches sont enfoncées.
 
 Il faut également, dans le programme principal, appeler cette fonction
 
-3. modifier cette fonction pour que le personnage ne puisse pas déborder
-de la fenetre de jeu.
+### Question 3.
+Modifier cette fonction pour que le personnage ne puisse pas déborder de la fenetre de jeu.
 
 **Remarque :**
 La hauteur et la largeur de la fenetre sont définies dans le programme
@@ -296,7 +298,12 @@ je peux écrire :
 largeur, hauteur = el.fenetre.get_size()
 ```
 
-3. Il s'agit maintenant de commencer à préparer le terrain pour passer ceci en
+### Question 4.
+Se débrouiller pour que le programme principal permette
+à la balle de se déplacer en rebondissant sur les bords de la fenetre.
+
+### Question 5.
+Il s'agit maintenant de commencer à préparer le terrain pour passer ceci en
 méthode.
 
 Le problème est qu'il faudra déplacer le personnage, mais aussi les balles,
@@ -323,12 +330,14 @@ Votre programme principal devra également modifier la ligne correspondant à la
 création du perso pour créer maintenant un Perso (et non plus un
 ElementGraphique)
 
-4. Transformez votre fonction *deplacer* en méthode de la classe Perso
+### Question 6.
+Transformez votre fonction *deplacer* en méthode de la classe Perso
 
 Il faudra aussi modifier votre programme principal pour qu'il appelle cette
 méthode (et non plus la fonction externe à la classe)
 
-5. Creez une classe Balle, héritant de ElementGraphique, qui appelle
+### Question 7.
+Creez une classe Balle, héritant de ElementGraphique, qui appelle
 le constructeur d'ElementGraphique, et ajoute comme attributs a la balle *dx*
 et *dy*, qui représenteront le vecteur de déplacement de la balle, fixé à 3,3
 par défaut.
@@ -336,13 +345,14 @@ par défaut.
 Modifiez votre programme principal pour que la balle soit une Balle (et non plus
 un ElementGraphique).
 
-6. Ajoutez une méthode déplacer a votre classe Balle, qui permette a la balle de
+### Question 8.
+Ajoutez une méthode déplacer a votre classe Balle, qui permette a la balle de
 rebondir.
 
 Appelez cette méthode dans votre programme principal.
 
-
-7. Modifiez votre programme pour que l'on ait 3 balles, réunies dans un tableau,
+### Question 9.
+Modifiez votre programme pour que l'on ait 3 balles, réunies dans un tableau,
 qui se déplacent à l'écran. Vous pourriez avoir envie de créer trois variables
 de type Balle, mais il sera plus efficace de placer ces 3 balles dans un tableau
 (une Liste python)
@@ -353,7 +363,8 @@ Cette section décrit ce qu'il faut, **au minimum**, pour pouvoir entamer
 sereinement le TP suivant. Evidemment, si vous êtes allé au bout du TP décrit dans
 ce document, vous êtes plus loin que cela.
 
-Pour le début du TP2, vous devrez au minimum (pour avoir 10 au TP1) avoir un programme avec :
+Pour le début du TP2, vous devrez au minimum (pour avoir 10 au TP1) avoir un
+programme avec :
 
 - un personnage (ElementGraphique) qui se déplace avec les touches.
 - une balle (ElementGraphique) qui se déplace automatiquement et rebondit.
@@ -425,12 +436,15 @@ Si vous avez crée 3 balles hors tableau, et des variables dx1,dy1, dx2, dy2, dx
 Pour améliorer votre note, on va faire un peu plus d'objet :
 (ce qui fera l'objet du TP suivant en fait)
 
-Si vous faites tout ceci, sans problème, sans aide, et avec un code nickel, nous voila rendu a une note de 18/20. Vous avez **compris les notions d'héritage et savez en tirer parti dans un cas pratique**.
+Si vous faites tout ceci, sans problème, sans trop d'aide, et avec un code
+nickel, nous voila rendu a une note de 18/20. Vous avez **compris les notions
+d'héritage et savez en tirer parti dans un cas pratique**.
 
 Pour avoir plus (cela suppose que tout ce qui précède soit fait)
 - codez propre
 - ajoutez des fonctionnalités (bonus, menu, son ???)
 
-Pas la peine d'ajouter du son ou un menu si vous n'avez pas un beau tableau de balles sous forme de classe, c'est du temps perdu.
+Pas la peine d'ajouter du son ou un menu si vous n'avez pas un beau tableau de
+balles sous forme de classe, c'est du temps perdu.
 
 Voila !
