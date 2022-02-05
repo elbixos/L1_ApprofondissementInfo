@@ -21,10 +21,13 @@ def lire_images():
 
 
 class ElementGraphique:
-    def __init__(self,image,fenetre):
+    def __init__(self,image,fenetre,x=0, y=0):
         self.image=image
-        self.rect = image.get_rect()
         self.fenetre = fenetre
+        self.rect = image.get_rect()
+        self.rect.x=x
+        self.rect.y=y
+
 
     def afficher(self):
         self.fenetre.blit(self.image, self.rect)
@@ -36,28 +39,19 @@ pygame.init()
 #creation de la fenetre
 largeur = 640
 hauteur = 480
-window=pygame.display.set_mode((largeur,hauteur))
+fenetre=pygame.display.set_mode((largeur,hauteur))
 
 images = lire_images()
 
 
-perso = ElementGraphique(images["perso"],window)
-# creation d'un rectangle pour positioner l'image du personnage
-perso.rect.x = 60
-perso.rect.y = 80
+perso = ElementGraphique(images["perso"],fenetre,x=60,y=80)
 
 # lecture de l'image du fond
-fond = ElementGraphique(images["fond"],window)
+fond = ElementGraphique(images["fond"],fenetre)
 
-balle = ElementGraphique(images["balle"],window)
-balle.rect.x = 400
-balle.rect.y = 300
+balle = ElementGraphique(images["balle"],fenetre,x=400,y=300)
 
-
-texte1 = ElementGraphique(images["texte1"],window)
-
-texte1.rect.x = 10
-texte1.rect.y = 10
+texte1 = ElementGraphique(images["texte1"],fenetre,x=10,y=10)
 
 # servira a regler l'horloge du jeu
 horloge = pygame.time.Clock()
