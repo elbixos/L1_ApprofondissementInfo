@@ -1,90 +1,39 @@
 
 ## TP 2.
 
-Normalement, à ce stade, vous devriez avoir fini le TP 1,
-et donc avoir une balle qui rebondit, un joueur qui se déplace.
-Idéalement, vous détectez les contacts entre le joueur et la balle pour arrêter
-le jeu.
+Normalement, à ce stade, a minima, vous devriez avoir :
+- une balle (ElementGraphique) qui rebondit,
+- un joueur (ElementGraphique) qui se déplace.
+- Vous détectez les contacts entre le joueur et la balle pour arrêter le jeu.
 
-MAIS : vos variables de déplacement de la balle sont externes à la balle
-et manipulées par le programme principal qui effectue le déplacement de la balle.
+Dans le meilleur des cas, vous avez déja :
+- une classe Balle (qui possede une méthode deplacer)
+- une classe Perso (qui possede une méthode déplacer)
+- votre programme principal génère un tableau de 3 objets de type Balle et les
+fait se déplacer, calcule les collisions avec le perso et arrete le jeu.
 
-Pour simplifier tout cela, nous allons créer une nouvelle classe qui sera une
-variété spécifique d'**ElementGraphique** et qui aura la capacité de se déplacer
-tout seul en ligne droite.
+### Si vous n'etes pas dans le meilleur des cas (ce qui se comprendrait)
 
-Créons donc une classe **Balle** qui hérite d'**ElementGraphique**
+#### Question 1 :
+Rattrapez votre retard : créez une classe Perso, avec sa méthode déplacer,
+qui dépend des touches.
 
-### Création des objets qui se déplacent seuls...
+#### Question 2 :
+Rattrapez votre retard : créez une classe Balle, avec sa méthode déplacer,
+qui permet de rebondir.
 
-Dans un fichier *Balle.py*, vous allez donc avoir ceci :
+#### Question 3 :
+Rattrapez votre retard : votre programme principal doit créer un tableau de 3
+balles, qui se déplacent toutes seules.
 
-```python
-class Balle (ElementGraphique):
-    def __init__(self,img,x=0,y=0):
-        ElementGraphique.__init__(self, img,x,y)
-```
+#### Question 4 :
+Rattrapez votre retard : votre programme doit tester la collision avec chacune
+des balles et arreter le programme en cas de collision.
 
-Pour déclarer notre balle, dans notre programme principal,
-nous allons maintenant déclarer la création de la balle comme suit :
+### Si vous avez fait tout ce qui précède
 
-```python
-image = pygame.image.load("balle.png").convert_alpha()
-balle = Balle(image,140,270)
-```
-
-Pour le moment, ce que nous avons fait n'a servi à rien, sauf que *balle*
-est maintenant une instance de *Balle* qui **hérite** de *ElementGraphique*.
-
-Ce que nous voulons, c'est que chaque balle ait une direction spécifique qui sera
-modifiée lors des rebonds.
-Pour cela, nous allons ajouter des champs **deltaX** et **deltaY** à nos objets
-*Balle*. Le fichier *Balle.py* devient alors
-
-```python
-class Balle (ElementGraphique):
-    def __init__(self,img):
-        ElementGraphique.__init__(self, img)
-        self.deltaX = 3
-        self.deltaY = -4
-```
-
-Maintenant, la balle transporte avec elle son vecteur de déplacement.
-Vous pouvez modifier votre programme votre programme principal pour qu'il
-utilise ces nouvelles variables.
-Vous aurez sans doute quelque chose comme ce qui suit au sein de votre boucle
-*while* :
-
-```python
-  balle.rect.x += balle.deltaX
-  balle.rect.y += balle.deltaY
-```
-Ceci fonction mais n'est pas très objet.
-
-Créez donc une méthode de la classe *Balle* qui effectue le déplacement.
-Cette méthode s'appelera **deplacer** :
-
-```python
-    def deplacer(self):
-        self.rect.x += self.deltaX
-        self.rect.y += self.deltaY
-```
-
-et votre programme principal aura alors la ligne suivante dans la boucle *while* :
-```python
-  balle.deplacer()
-```
-
-Notez bien qu'on ne prend ici pas en compte les rebonds.
-Pour cela, il faut impérativement que la fonction déplacer ait accès à la fenêtre.
-Soit vous ajouter ce paramètre à la méthode *deplacer*, soit, lorsque l'on crée
-un *ElementGraphique*, celui ci doit savoir à quelle fenetre il est attaché.
-La seconde solution sera plus pratique sur le long terme, mais c'est à vous de voir.
-
-Débrouillez vous pour faire fonctionner les rebonds.
-
-### Gestion des collisions à la sauce objet :
-Tant que vous y êtes, créez une méthode dans *ElementGraphique* qui dit si un
+#### Question 5
+Si ce n'est pas déja fait, créez une méthode dans *ElementGraphique* qui dit si un
 *ElementGraphique* en touche un autre. Cette méthode aurait la forme suivante :
 ```python
     def collide(self, other):
@@ -92,41 +41,48 @@ Tant que vous y êtes, créez une méthode dans *ElementGraphique* qui dit si un
             return True
         return False
 ```
+Par héritage, les objets de type Balle ou Perso pourront utiliser cette méthode.
 
-Utilisez cette méthode pour gérer le contact entre votre balle et votre joueur.
+Utilisez donc cette méthode pour gérer le contact entre les balles et le joueur.
+Ca simplifiera beaucoup le code du programme principal.
 
-#### Qu'avons nous gagné ?
-C'est facile a voir :
+#### Question 6
+Ajoutez de l'aléatoire : modifiez le constructeur d'une Balle pour que sa position
+soit tirée au hasard (dans la fenetre). Vous pouvez aussi tirer au sort son
+déplacement initial (dans la mesure du raisonnable)
 
-1. Au lieu de manipuler une balle, construisez un tableau de 3 ou 4 balles. Constatez que la manipulation des multiples balles est beaucoup plus facile car chaque balle se gère plus ou moins toute seule.
+#### Question 7
+Debrouillez vous pour que le jeu commence avec une seule balle,
+puis crée une nouvelle balle toutes les 3 secondes.
 
-2. Vous pouvez maintenant vous débrouiller pour que le jeu commence avec une seule balle et qu'une balle soit ajoutée tous les 100 tours de boucles (idéalement toutes les 5 secondes)
+#### Question 8 (difficile)
+Ajoutez des vies a votre personnage. Il commence avec 3 vies.
+Il en perd une a chaque collision. lorsqu'il n'a plus de vies, le jeu s'arrête.
 
-3. Débrouillez vous pour que lorsqu'une balle est créee, sa direction soit tirée au hasard.
+*Remarque* : lorsque le personnage est touché, il va sans doute falloir
+désactiver le test de collisions pour un moment (sinon, il touche la meme balle
+30 fois par seconde et perd toutes ses vies d'un coup)
 
-### Gestion du joueur
+Une belle façon de faire cela est de preparer un attribut invulnerable dans la
+classe Perso, ainsi qu'un compteur de temps.
+1. Quand le personnage est touché invulnérable passe a True, et le compteur à
+zéro.
+2. Lorsqu'on déplace le personnage, s'il est invulnerable, on incrémente le
+compteur. Si le compteur est supérieur à 30 (soit une seconde), il cesse d'être
+invulnerable (invulnerable passe a False)
 
-Ce que nous avons fait pour la balle, nous allons le faire pour un joueur.
+Pour gérer les collisions :
+1. on crée une méthode collide dans le Perso.
+2. si le perso est invulnerable, cette méthode renvoie False. Sinon, elle renvoie
+le meme résultat que la collision de la classe ElementGraphique
 
-1. Créez une classe **Joueur** qui hérite de *ElementGraphique*.
-Vous pouvez par exemple ajouter un champ **vies** à votre joueur si vous voulez,
-initialisé à 3.
+#### Question 9
+Commencez a penser a des bonus.
+il nous faudrait
+- un bonus qui ajoute une vie
+- un bonus qui donne une survitesse pendant 5s.
 
-Votre joueur devrait être initialisé comme suit :
-```python
-image = pygame.image.load("perso.png").convert_alpha()
-joueur = Joueur(image,10,30)
-```
 
-2. Ajoutez une méthode *deplacer* qui prend comme argument le tableau de touches
-et qui modifie la position du joueur en fonction de ce tableau.
-Votre programme principal appelera cette méthode comme suit :
-```python
-    joueur.deplacer(touches)
-```
-
-3. En cas de collision, le joueur doit perdre une vie et le programme
-doit s'arreter si le joueur n'a plus de vies.
 
 ### Minimum requis pour la séance suivante
 
@@ -137,5 +93,14 @@ Pour le début du TP3, vous devrez au minimum (pour avoir 10 au TP1) avoir un pr
 - un personnage (Joueur) qui se déplace grace à la méthode *deplacer* de la classe Joueur.
 - Un tableau de balles (Balle) qui se déplacent automatiquement et rebondissent grace à la méthode *deplacer* de la classe Balle.
 - en cas de collision entre une balle et le personnage, le jeu s'arrête.
-- Le jeu commence avec une seule balle.
-- Une balle est ajoutée tous les 100 tours de boucle.
+- Le jeu commence avec 3 balles.
+
+
+### Les points en plus.
+En gros :
+
+- les questions 5 et 6 vous amenent à 12
+- la question 7 vous amene à 14
+- la question 8 vous amene à 17
+- au dela, vous avez mis des bonus, mais ca fait longtemps que vous ne codez
+plus pour la note, mais parce que c'est cool.
