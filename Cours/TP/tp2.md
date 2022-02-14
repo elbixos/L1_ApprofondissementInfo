@@ -72,9 +72,10 @@ compteur. Si le compteur est supérieur à 30 (soit une seconde), il cesse d'êt
 invulnerable (invulnerable passe a False)
 
 Pour gérer les collisions :
-1. on crée une méthode collide dans le Perso.
-2. si le perso est invulnerable, cette méthode renvoie False. Sinon, elle renvoie
-le meme résultat que la collision de la classe ElementGraphique
+1. on crée une méthode *appliquer_degats* dans la classe Perso, qui sera appelée
+dès qu'une collision balle / perso est détectée.
+2. si le perso est n'est pas invulnerable, cette méthode lui retire une vie.
+Sinon, elle ne fait rien.
 
 #### Question 9
 Commencez a penser a des bonus.
