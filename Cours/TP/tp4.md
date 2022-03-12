@@ -38,7 +38,7 @@ Le concept est simple :
 ou plusieurs images. Si le joueur appuie sur <Enter>, le jeu débute.
 - pendant le jeu, si le joueur appuie sur <P>, on met le jeu en pause
 (avec un affichage qui dit "Pause").
-Quand on est en pause, si on appuie sur <U>, le jeu reprend
+Quand on est en pause, si on appuie sur < U > , le jeu reprend
 - Lorsque le joueur a perdu, on affiche un message / une image signalant
 "Game Over". Si le joueur appuie sur <Enter>, le programme s'arrête.
 
