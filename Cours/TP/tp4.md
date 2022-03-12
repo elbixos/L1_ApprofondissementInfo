@@ -40,7 +40,8 @@ ou plusieurs images. Si le joueur appuie sur <Enter>, le jeu débute.
 (avec un affichage qui dit "Pause").
 Quand on est en pause, si on appuie sur < U > , le jeu reprend
 - Lorsque le joueur a perdu, on affiche un message / une image signalant
-"Game Over". Si le joueur appuie sur <Enter>, le programme s'arrête.
+"Game Over".
+Si le joueur appuie sur <Enter>, le programme s'arrête.
 
 Pour faire tout cela, il nous faut simplement une variable **etat** qui signale
 dans lequel de ces cas on est. Par exemple, lorsque le programme débute, on sera
